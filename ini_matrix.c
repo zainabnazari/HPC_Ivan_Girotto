@@ -5,33 +5,31 @@
 #include <time.h>
 //stdlib.h for memory allocation. To use for instance the malloc.
 
-int main(int argc, char **argv[])
+int main(int argc, char* argv[])
 {
 
-
+int rank, size, n=6;
 MPI_Init(&argc, &argv);
 MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 MPI_Comm_size(MPI_COMM_WORLD, &size);
 int n_local = n/size;
-int rank, size, n=(argv[1])
 int n_shared = n*n_local;
 
 double* proc_shared = (double*) malloc(n_local*n * sizeof(double));
-MPI_Send(proc_elements, proc_elementShare, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+//MPI_Send(proc_elements, proc_elementShare, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
 
 
 for (int i=0; i<n_local; i++){
     for (int j=0; j<n; j++){
-      if(i*m+j==(rank*n_local)(n+1)){
-        proc_shared[i*m+j]=1;
-      }
-      else{proc_shared[i*m+j]=0;}
+      if(i*(n+1)+rank*n_local==i*n+j){
+        proc_shared[i*n+j]=1;}
+      else{proc_shared[i*n+j]=0;}
     }
   }
 
 for (int i=0; i<n_local; i++){
       for (int j=0; j<n; j++){
-        printf("%f\n", proc_shared[i*m+j]);
+        printf("%f\n", proc_shared[i*n+j]);
         }
 
       }
@@ -65,8 +63,8 @@ if (rank==0){
 
 }
 */
-free(proc_shared);
 MPI_Finalize();
+free(proc_shared);
 
 return 0;
 }
