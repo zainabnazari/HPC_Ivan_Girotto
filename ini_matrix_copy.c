@@ -66,5 +66,5 @@ if (rank==0){
 MPI_Finalize();
 free(proc_shared);
 
-rern 0;
+return 0;
 }
