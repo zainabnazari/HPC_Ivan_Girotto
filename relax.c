@@ -27,16 +27,20 @@ for (int i=0; i<n_local; i++){
     for (int j=0; j<n; j++){
       if(i*(n+1)+rank*n_local+modx==i*n+j){
         proc_shared[i*n+j]=1;}
+        printf("%d,", proc_shared[i*n+j]);
     }
+    printf("\n");
   }
 
-for (int i=0; i<n_local; i++){
-      for (int j=0; j<n; j++){
-        printf("%d,", proc_shared[i*n+j]);
-        }
-printf("\n");
+/*
+    for (int i=0; i<n_local; i++){
+          for (int j=0; j<n; j++){
+            printf("%d,", proc_shared[i*n+j]);
+            }
+    printf("\n");
 
-      }
+          }
+  */
 
 
 MPI_Finalize();
