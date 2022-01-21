@@ -32,14 +32,15 @@ for (int i=0; i<n_local; i++){
     }
     printf("\n");
   }
-}
 else{
 FILE *fp;
 fp = fopen("Output.txt", "w");
 fprintf(fp, "%d", proc_shared[i*n+j]);
 fclose(fp);
 
+  }
 }
+
 }
 
 
