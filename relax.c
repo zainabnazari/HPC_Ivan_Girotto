@@ -22,7 +22,7 @@ int* proc_shared = (int*) calloc(n_local*n , sizeof(int));
 if(rank>=mod){
  modx=mod;
 }
-if (n<16){
+
 for (int i=0; i<n_local; i++){
     for (int j=0; j<n; j++){
       if(i*(n+1)+rank*n_local+modx==i*n+j){
@@ -41,7 +41,7 @@ fclose(fp);
   }
 }
 
-}
+
 
 
 /*
