@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[])
 {
-//int n;
+
 int n=atoi(argv[1]);
 int rank, size, n=15;
 MPI_Init(&argc, &argv);
