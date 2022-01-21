@@ -6,13 +6,8 @@
 int main(int argc, char* argv[])
 {
 
-<<<<<<< HEAD
-int n=atoi(argv[1]);
-int rank, size, n=15;
-=======
 int n = atoi(argv[1]);
 int rank, size;
->>>>>>> b742187666d581ccd3c1b0cab8a0267b5ce5fa1e
 MPI_Init(&argc, &argv);
 MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -27,14 +22,26 @@ int* proc_shared = (int*) calloc(n_local*n , sizeof(int));
 if(rank>=mod){
  modx=mod;
 }
+if (n<16){
 for (int i=0; i<n_local; i++){
     for (int j=0; j<n; j++){
       if(i*(n+1)+rank*n_local+modx==i*n+j){
         proc_shared[i*n+j]=1;}
+        if (n<16){
         printf("%d,", proc_shared[i*n+j]);
     }
     printf("\n");
   }
+}
+else{
+FILE *fp;
+fp = fopen("Output.txt", "w");
+fprintf(fp, "%d", proc_shared[i*n+j]);
+fclose(fp);
+
+}
+}
+
 
 /*
 if (rank!=0){
