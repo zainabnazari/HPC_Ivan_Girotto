@@ -44,7 +44,7 @@ for (int i=0; i<n_local; i++){
         fprintf(fp, "%d", proc_shared[i*n+j]);
       }
     }
-      fprintf(fp, "\n");
+      fprintf("\n");
 }
 fclose(fp);
 }
