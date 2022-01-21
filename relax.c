@@ -29,8 +29,8 @@ for (int i=0; i<n_local; i++){
         proc_shared[i*n+j]=1;}
         if (n<16){
         printf("%d,", proc_shared[i*n+j]);
-    }
     printf("\n");
+  }
   }
 else{
 FILE *fp;
