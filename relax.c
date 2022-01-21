@@ -37,7 +37,7 @@ if (rank!=0){
   MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
 }
 
-MPI_Recv(m, rows * n, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
+//MPI_Recv(m, rows * n, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
 /*
     for (int i=0; i<n_local; i++){
           for (int j=0; j<n; j++){
