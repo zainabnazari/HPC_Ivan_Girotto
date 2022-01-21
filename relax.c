@@ -17,8 +17,9 @@ if (rank<mod){
   n_local++;
 }
 int* proc_shared = (int*) malloc(n_local*n * sizeof(int));
-
-//MPI_Send(proc_elements, proc_elementShare, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+if (rank!=0){
+MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
+}
 if(rank>=mod){
  modx=mod;
 }
@@ -31,6 +32,12 @@ for (int i=0; i<n_local; i++){
     printf("\n");
   }
 
+
+if (rank!=0){
+  MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
+}
+
+MPI_Recv(m, rows * n, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
 /*
     for (int i=0; i<n_local; i++){
           for (int j=0; j<n; j++){
