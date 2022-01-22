@@ -44,6 +44,8 @@ for (int i=0; i<n_local; i++){
         fprintf(fp, "%d", proc_shared[i*n+j]);
       }
     }
+    FILE *fp;
+    fp = fopen("Output.txt", "w");
       fprintf(fp,"\n");
 }
 
