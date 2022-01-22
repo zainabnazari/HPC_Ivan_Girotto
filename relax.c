@@ -47,8 +47,9 @@ for (int i=0; i<n_local; i++){
       fprintf(fp,"\n");
 }
 
-}
 fclose(fp);
+
+}
 /*
 if (rank!=0){
   MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
