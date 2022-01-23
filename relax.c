@@ -23,18 +23,34 @@ if(rank>=mod){
  modx=mod;
 }
 
-if (n<16){
+
 for (int i=0; i<n_local; i++){
     for (int j=0; j<n; j++){
       if(i*(n+1)+rank*n_local+modx==i*n+j){
         proc_shared[i*n+j]=1;}
-        printf("%d,", proc_shared[i*n+j]);
-      }
-    printf("\n");
-
   }
+
 }
-else{
+
+if (rank!=0){
+  MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
+}
+
+if (rank=0 && size>1&&n<=16)
+{
+for (i=1; i<=size; i++){
+MPI_Recv(proc_shared, n_local*n, MPI_INT, i, 0, MPI_COMM_WORLD, &status);
+}
+for (int i=0; i<n_local; i++){
+  for (int j=0; j<n; j++){
+      printf("%d,", proc_shared[i*n+j]);
+    }
+  printf("\n");
+}
+}
+
+/*
+elseif (n>=16){
 FILE *fp;
 fp = fopen("Output.txt", "w");
 for (int i=0; i<n_local; i++){
@@ -51,14 +67,11 @@ for (int i=0; i<n_local; i++){
 
 }
 fclose(fp);
-/*
-if (rank!=0){
-  MPI_Send(proc_shared, n_local*n, MPI_INT, 0, 0, MPI_COMM_WORLD);
-}
-
-if (rank=0){
-MPI_Recv(proc_shared, n_local*n, MPI_INT, i, 0, MPI_COMM_WORLD, &status);}
 */
+
+
+
+
 
 
 
